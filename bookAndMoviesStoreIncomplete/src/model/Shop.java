@@ -108,7 +108,7 @@ public class Shop {
 
 		for(int i = 0; i < catalog.size(); i++ )
 		{
-			info += catalog.get(i).getInformation();
+			info += catalog.get(i).getInformation() +"\n";
 		}	
 		
 		return info;
@@ -234,9 +234,34 @@ public class Shop {
 		 *  - Se muestra un mensaje reportando el error.
 		 */
 
+		String out = "";
+		double salePrice = 0;
+		double priceWithED = 0;
+		double amountWithTax = 0;
+		double totalToPay = 0;
+
 		//1 
-		if( )
-		return "";
+		if( p.isSafeSale(units) == true )
+		{
+			//2
+			salePrice = p.getSalePrice(units);
+			//3
+			priceWithED = p.applyExtraDiscount( salePrice, discount );
+			//4
+			amountWithTax = priceWithED * TAX_IVA;
+			//5
+			totalToPay = p.calculateTax( priceWithED, amountWithTax );
+			totalSales++;
+			//6
+			out = "\n\tTOTAL = "+totalToPay +"\n\t==The product has been sold==";
+
+		}
+		else
+		{
+			out = "\n\t==ERROR==\n\tNot enough units";
+		}
+
+		return out;
 		
 	}
 	
@@ -264,6 +289,8 @@ public class Shop {
 		 * si no: 
 		 *  - Se muestra un mensaje reportando el error.
 		 */
+
+
 		return"";
 	}
 	
