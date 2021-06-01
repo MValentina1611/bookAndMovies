@@ -289,9 +289,24 @@ public class Shop {
 		 * si no: 
 		 *  - Se muestra un mensaje reportando el error.
 		 */
+		String out = "";
+		double rentPrice = 0;
+		//1
+		if( p.isSafeRent() == true )
+		{
+			//2
+			rentPrice = p.getRentPrice( days );
+			//3
+			p.rentProduct( days );
 
+			out = "\n\tTOTAL= "+ rentPrice +"\n\t==The product has been rented==";
+		}
+		else
+		{
+			out = "\n\t==ERROR==\n\tThe product is not available";
+		}
 
-		return"";
+		return out;
 	}
 	
 
