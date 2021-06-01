@@ -123,12 +123,13 @@ public class Shop {
 	 * c0digo que el parámetro, null en el caso en que la lista
 	 * no contiene un producto con ese c0digo
 	 */
-	public Product findProduct(String code) {
+	public Product findProduct(String code) 
+	{
 		Product p=null;
 		
 		for(int i = 0; i < catalog.size(); i++ )
 		{
-			if( catalog.get(i).getCode() == code )
+			if( catalog.get(i).getCode().equalsIgnoreCase(code) )
 			{
 				p = catalog.get(i);
 			}
