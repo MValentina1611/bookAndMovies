@@ -6,7 +6,7 @@ public interface Saleable{
 
 	public boolean isSafeSale(int units );
 
-	public double applyExtraDiscount( double subtotal, doble percenteageDiscount );
+	public double applyExtraDiscount( double subtotal, double percenteageDiscount );
 
 	public double calculateTax( double totalPrice, double percenteage );
 

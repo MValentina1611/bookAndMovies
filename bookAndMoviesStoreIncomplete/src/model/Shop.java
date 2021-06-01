@@ -70,12 +70,13 @@ public class Shop {
 	 * @return una cadena informando si el producto fue agregado al catalogo o un mensaje
 	 * informando que el producto ya existe. 
 	 */
-	public String addProduct(String code,String name, int units, double price, ProductType type) {
-		return "";
+	public String addProduct(String code,String name, int units, double price, ProductType type) 
+	{
+		Product productForSale = new ProductForSale(code, name, units, price, type);
+		catalog.add( productForSale );
+		return "The product for sale was added to the catalog";
 	}
 	
-
-
 	/**
 	 * Metodo que agrega al catalogo un producto para alquiler, <br>
 	 * PRE: el arrayList catalog está inicializado <br>
@@ -88,8 +89,12 @@ public class Shop {
 	 * @return una cadena informando si el producto fue agregado al catalogo o un mensaje
 	 * informando que el producto ya existe. 
 	 */
-	public String addProduct(String code, String name, double price, ProductType type) {
-		return "";
+	public String addProduct(String code, String name, double price, ProductType type)
+	{
+		Product productForRent = new ProductForRent(code, name, price, type);
+		catalog.add( productForRent );
+
+		return "The product for rent was added to the catalog";
 	}
 	
 	/**
@@ -97,8 +102,16 @@ public class Shop {
 	 * que hay en el catalogo.
 	 * @return cadena con la informacion de los productos
 	 */
-	public String showCatalog() {
-		return "";
+	public String showCatalog() 
+	{
+		String info = "";
+
+		for(int i = 0; i < catalog.size(); i++ )
+		{
+			info += catalog.get(i).getInformation();
+		}	
+		
+		return info;
 	}
 	
 	/**
@@ -113,6 +126,14 @@ public class Shop {
 	public Product findProduct(String code) {
 		Product p=null;
 		
+		for(int i = 0; i < catalog.size(); i++ )
+		{
+			if( catalog.get(i).getCode() == code )
+			{
+				p = catalog.get(i);
+			}
+		}
+
 		return p;
 	}
 	
@@ -130,18 +151,23 @@ public class Shop {
 	 * @return SALE si es para vender, 
 	 * RENT si es para alquilar
 	 */
-	public int getOperation(String code) {
+	public int getOperation(String code) 
+	{
 		int operation= -1;
 		Product p = findProduct(code);
 
-		if(p instanceof Saleable) {
-			operation=SALE;
-		}else if (p instanceof Rentable){
-			operation=RENT;
+		if(p instanceof Saleable)
+		{
+			operation = SALE;
+		}
+		else if(p instanceof Rentable)
+		{
+			operation = RENT;
 		}
 		return operation;
 		
 	}
+
 	/**
 	 * Metodo que recibe los datos para hacer una venta y llama al <br>
 	 * metodo que se encarga de hacer el proceso de ventas asegurándose <br>
@@ -151,11 +177,12 @@ public class Shop {
 	 * @param discount double con el porcentaje de descuento extra (numero entre 0 y 1)
 	 * @return mensaje de respuesta de la venta
 	 */
-	public String saleProduct(String cod, int units, double discount) {
+	public String saleProduct(String cod, int units, double discount) 
+	{
 		String answer="";
 		
 		Product p = findProduct(cod);
-		answer= sale((Saleable)p, units, discount);
+		answer = sale((Saleable)p, units, discount);
 		return answer;
 		
 	}
@@ -190,7 +217,8 @@ public class Shop {
 	 *  (numero entre 0 y 1)units int cantidad de unidades a vender
 	 * @return un mensaje con el resultado de la venta
 	 */
-	private  String sale(Saleable p, int units, double discount) {
+	private  String sale(Saleable p, int units, double discount) 
+	{
 		
 		/*
 		 * Para hacer una venta
@@ -205,6 +233,9 @@ public class Shop {
 		 * si no: 
 		 *  - Se muestra un mensaje reportando el error.
 		 */
+
+		//1 
+		if( )
 		return "";
 		
 	}

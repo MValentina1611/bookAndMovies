@@ -68,3 +68,5 @@ public class ProductForSale extends Product implements Saleable{
 	{
 		this.discount = discount;
 	}
+
+  }

@@ -7,7 +7,7 @@ public class ProductForRent extends Product implements Rentable{
 	private LocalDate devolutionDate;
 	private State state;
 
-	public ProductForRent( java.lang.String code, java.lang.String name, int units, double price, ProductType type, int numDays )
+	public ProductForRent( java.lang.String code, java.lang.String name, double price, ProductType type )
 	{
 		super(code, name, 1, price, type);
 		state = State.AVAILABLE;
@@ -38,7 +38,7 @@ public class ProductForRent extends Product implements Rentable{
 	public void rentProduct(int amountDays)
 	{
 		setState( State.RENTED);
-		devolutionDate = localDate.plusDays(5);
+		devolutionDate = devolutionDate.plusDays(5);
 	}
 
 
@@ -46,8 +46,8 @@ public class ProductForRent extends Product implements Rentable{
 	public java.lang.String getInformation()
 	{
 		String info = "";
-		info = "\n\tCode: " + code + "\n\tName: "+ name + "\n\tUnits: "+ units + "\n\tPrice: " + price + "\n\tType: " + type;+ "\n\tState: "+ state + "\n\tDevolution Date: "+ devolutionDate;
-		return info;
+		info = "\n\tCode: " + super.getCode() + "\n\tName: "+ super.getName() + "\n\tUnits: "+ super.getUnits() + "\n\tPrice: " + super.getPrice(1) + "\n\tType: " + super.getType()+ "\n\tState: "+ state +  "\n\tDevolution Date: "+ devolutionDate;
+ 		return info;
 	}
 
 	@Override
