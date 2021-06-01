@@ -11,7 +11,7 @@ public class ProductForSale extends Product implements Saleable{
 	}
 
 	@Override
-	public double applyExtraDiscount( double subtotal, double percenteageDiscount );
+	public double applyExtraDiscount( double subtotal, double percenteageDiscount )
 	{
 		double finalValue = 0;
 
@@ -35,7 +35,7 @@ public class ProductForSale extends Product implements Saleable{
 	{
 		String info = "";
 
-		info = "\n\tCode: " + code + "\n\tName: "+ name + "\n\tUnits: "+ units + "\n\tPrice: " + price + "\n\tType: " + type;
+		info = "\n\tCode: " + super.getCode() + "\n\tName: "+ super.getName() + "\n\tUnits: "+ super.getUnits() + "\n\tPrice: " + super.getPrice( super.getUnits() ) + "\n\tType: " + getType();
 
 		return info;
 	}
@@ -55,7 +55,7 @@ public class ProductForSale extends Product implements Saleable{
 	public boolean isSafeSale(int units)
 	{
 		boolean safe = false;
-		if( (units > 0) && ( units < this.units ) )
+		if( (units > 0) && ( units < super.getUnits() ) )
 		{
 			safe = true;
 		}
@@ -63,7 +63,6 @@ public class ProductForSale extends Product implements Saleable{
 		return safe;
 	}
 
-	@Override
 	public void setDiscount(double discount)
 	{
 		this.discount = discount;
